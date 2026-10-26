@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "apiVersion": 1,
+  "id": "critical-alert-overlay",
+  "name": "Critical Alert Overlay",
+  "version": "1.0.0",
+  "minAndroidSdk": 26,
+  "entryClass": "me.jxl.kiosk.plugins.criticalalert.CriticalAlertOverlayPlugin",
+  "description": "High-visibility critical alert overlay across screensaver and dashboards for peak-tariff warnings, EV charging alerts, and appliance protection.",
+  "author": "mortalone",
+  "license": "MIT",
+  "capabilities": [
+    "overlay",
+    "host.read"
+  ],
+  "settings": [
+    {
+      "key": "alertEntity",
+      "type": "string",
+      "title": "HA Trigger Entity",
+      "default": "binary_sensor.ev_uonsket_dyr_ladning_aktiv",
+      "group": "Trigger",
+      "description": "Entity ID in Home Assistant to monitor (e.g. binary_sensor.ev_uonsket_dyr_ladning_aktiv)."
+    },
+    {
+      "key": "alertState",
+      "type": "string",
+      "title": "Trigger State",
+      "default": "on",
+      "group": "Trigger",
+      "description": "Entity state that triggers the alarm (default: on)."
+    },
+    {
+      "key": "alertTitle",
+      "type": "string",
+      "title": "Alert Headline",
+      "default": "🚨 ADVARSEL: KRITISK DYR LADNING! 🚨",
+      "group": "Content",
+      "description": "Large bold headline displayed on screen."
+    },
+    {
+      "key": "alertMessage",
+      "type": "string",
+      "title": "Alert Message",
+      "default": "Bilen eller apparater bruger strøm i spærretid! Tag stikket ud af bilen!",
+      "group": "Content",
+      "description": "Clear instruction or call-to-action text."
+    },
+    {
+      "key": "overlayTarget",
+      "type": "select",
+      "title": "Show overlay on",
+      "default": "Screensaver + Dashboards",
+      "options": [
+        "Screensaver + Dashboards",
+        "Screensaver only",
+        "Dashboards only"
+      ],
+      "group": "Display",
+      "description": "Where to present the overlay (Kiosk screensavers/Fotoo, dashboards, or everywhere)."
+    },
+    {
+      "key": "pulseAnimation",
+      "type": "boolean",
+      "title": "Pulsing animation",
+      "default": true,
+      "group": "Display",
+      "description": "Pulse red glow and scale to ensure the alert cannot be missed."
+    },
+    {
+      "key": "dismissible",
+      "type": "boolean",
+      "title": "Allow snooze / dismiss",
+      "default": true,
+      "group": "Behavior",
+      "description": "Show a button allowing the user to temporarily snooze the overlay."
+    },
+    {
+      "key": "dismissMinutes",
+      "type": "number",
+      "title": "Snooze duration (minutes)",
+      "default": 15,
+      "group": "Behavior",
+      "description": "How many minutes the overlay stays hidden after snooze."
+    }
+  ]
+}
